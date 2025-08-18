@@ -6,7 +6,7 @@ Skilled in Python, FastAPI, AWS, Kubernetes, LangGraph, LLM workflows
 Interested in scalable backend systems & AI-powered applications  
 
   Tech Stack
-- anguages: Python, JavaScript, SQL, C++  
+- Languages: Python, JavaScript, SQL, C++  
 - Backend: FastAPI, Django, Spring Boot, REST, GraphQL  
 - Databases: PostgreSQL, MySQL, DynamoDB, MongoDB  
 - Infra: AWS, Docker, Kubernetes, Terraform  
