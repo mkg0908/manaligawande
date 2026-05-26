@@ -66,14 +66,13 @@ const experience: TimelineEntry[] = [
   },
   {
     title: 'VI Solutions',
-    subtitle: 'IoT & Machine Learning Intern',
+    subtitle: 'Software Engineer Intern',
     meta: 'Jun 2020 - Jul 2020 | Remote, India',
     logo: '/logos/vi-solutions.png',
     fallback: 'VI',
     bullets: [
-      'Built a Python-based data acquisition and anomaly detection pipeline for IoT sensor systems.',
-      'Reduced manual testing effort by 30% through automated validation workflows.',
-    ],
+      'Built Java and Spring Boot REST APIs to support data acquisition, validation and process automation for industrial IoT systems.','Developed React dashboards for real-time monitoring and configuration of automated sensor data pipelines.',
+      'Reduced manual QA effort by 30% by building a Python-based anomaly detection and data validation pipeline for IoT sensor workflows.'],
     tags: ['Python', 'IoT', 'Machine Learning', 'Sensors', 'Data Validation'],
   },
 ]
@@ -426,6 +425,25 @@ function ExternalIcon() {
 
 function App() {
   const [profileLoaded, setProfileLoaded] = useState(true)
+  const [isResumeOpen, setIsResumeOpen] = useState(false)
+
+  useEffect(() => {
+    if (!isResumeOpen) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsResumeOpen(false)
+      }
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isResumeOpen])
 
   return (
     <main>
@@ -469,9 +487,9 @@ function App() {
             <small>Open to relocation across the U.S.</small>
           </motion.div>
           <motion.div className="hero-actions" variants={fadeUp} transition={{ duration: 0.5 }}>
-            <a className="button ghost" href="/Manali_Gawande_Resume.pdf" target="_blank" rel="noreferrer">
+            <button className="button ghost" type="button" onClick={() => setIsResumeOpen(true)}>
               Resume
-            </a>
+            </button>
             <a className="button primary" href="#contact">Contact</a>
           </motion.div>
           <motion.div className="social-links" variants={fadeUp} transition={{ duration: 0.5 }}>
@@ -686,6 +704,30 @@ function App() {
           </Reveal>
         </div>
       </section>
+
+      {isResumeOpen && (
+        <div className="resume-modal" role="dialog" aria-modal="true" aria-label="Resume viewer">
+          <div className="resume-modal-backdrop" onClick={() => setIsResumeOpen(false)} />
+          <div className="resume-modal-panel">
+            <div className="resume-modal-header">
+              <h2>Resume</h2>
+              <div className="resume-modal-actions">
+                <a className="button ghost" href="/Manali_Gawande_Resume.pdf" target="_blank" rel="noreferrer">
+                  Open PDF
+                </a>
+                <button className="button ghost" type="button" onClick={() => setIsResumeOpen(false)}>
+                  Close
+                </button>
+              </div>
+            </div>
+            <iframe
+              className="resume-frame"
+              src="/Manali_Gawande_Resume.pdf#toolbar=1&navpanes=0"
+              title="Manali Gawande Resume"
+            />
+          </div>
+        </div>
+      )}
     </main>
   )
 }
