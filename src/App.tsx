@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { motion } from 'framer-motion'
+import { Analytics } from '@vercel/analytics/react'
 import './App.css'
 
 type TimelineEntry = {
@@ -728,6 +729,7 @@ function App() {
           </div>
         </div>
       )}
+      <Analytics />
     </main>
   )
 }
